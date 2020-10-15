@@ -1,0 +1,2 @@
+# WebApplicationTemplate
+WebApplication Master Template
