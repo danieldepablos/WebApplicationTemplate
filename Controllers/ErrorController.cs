@@ -8,9 +8,15 @@ namespace WebApplication.Controllers
 {
     public class ErrorController : Controller
     {
+
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
         // GET: Error
         public ActionResult Index(int error = 0)
         {
+            
+            Logger.Error(error.ToString(), "Goodbye cruel world");
+
             switch (error)
             {
                 case 505:
