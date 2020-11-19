@@ -1,4 +1,9 @@
-﻿<style>
+﻿@{
+    Page.Title = "Title goes here";
+    //Layout = "Your Layout Page goes here";
+}
+
+<style>
     body {
         background: #dedede;
     }
@@ -12,8 +17,8 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12 text-center">
-                <span class="display-4 d-block">@ViewBag.Title</span>
-                <div class="mb-4 lead">@ViewBag.Description <br /> @ViewBag.Instructions</div>
+                <span class="display-1 d-block">@ViewBag.Title</span>
+                <div class="mb-4 lead">@ViewBag.Description</div>
                 <a href="@Url.Action("Index","Home")" class="btn btn-outline-info">Regresar al Inicio</a>
             </div>
         </div>

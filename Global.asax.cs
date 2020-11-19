@@ -1,3 +1,4 @@
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,8 @@ namespace WebApplication
 {
     public class MvcApplication : System.Web.HttpApplication
     {
+        private static readonly NLog.Logger _Logger = NLog.LogManager.GetCurrentClassLogger();
+
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -20,15 +23,23 @@ namespace WebApplication
 
         protected void Application_Error(object sender, EventArgs e)
         {
+
             Exception exception = Server.GetLastError();
             Response.Clear();
 
             HttpException httpException = exception as HttpException;
 
-            int error = httpException != null ? httpException.GetHttpCode() : 0;
+            int error = httpException != null ? httpException.GetHttpCode() : 500;
 
             Server.ClearError();
-            Response.Redirect(String.Format("~/Error/?error={0}", error, exception.Message));
+
+            _Logger.Error(String.Format("{0}|{1}", error, exception));
+
+            //_Logger.Error(filterContext.Exception);
+
+            //Response.Redirect(String.Format("~/ErrorHandler/ApplicationError?error={0}&message={1}", error, exception.Message));
+            Response.Redirect(String.Format("~/ErrorHandler/ApplicationError?error={0}", error, exception.Message));
+
         }
 
     }

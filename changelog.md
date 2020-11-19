@@ -11,7 +11,7 @@
 
 # Features
 
-  - Implementación de Custom Error Page.
+  - Implementación de Custom Error Page. 18.11.2020
   - Implementación de NLog para gestión de plataforma de logging.
 
 Octubre 2020
